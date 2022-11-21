@@ -92,7 +92,6 @@ TEST_CASE("constructors") {
 //         REQUIRE(bst.contains(77));
 //         REQUIRE(!bst.contains(11));
 //         REQUIRE(!bst.contains(111));
-//         cout << " 3 " << flush;
 
 //         bst.insert(11);
 //         bst.insert(22);

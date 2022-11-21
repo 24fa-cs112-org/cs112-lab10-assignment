@@ -27,7 +27,7 @@ public:
         virtual ~Node();
 
         void traversePreorder() const;
-        virtual void processItem();
+        virtual void processItem() const;
 
         Item myItem;
         Node* myLeft;
@@ -73,7 +73,7 @@ unsigned BST<Item>::getNumItems() const {
 }
 
 template <class Item>
-void BST<Item>::Node::processItem() {
+void BST<Item>::Node::processItem() const {
     cout << ' ' << myItem;
 }
 
