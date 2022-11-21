@@ -47,8 +47,6 @@ BST<Item>::BST() {
 template <class Item>
 BST<Item>::~BST() {
     delete myRoot;
-    myRoot = nullptr;
-    myNumItems = 0;
 }
 
 template <class Item>
