@@ -1,0 +1,50 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: insert
+      id: insert
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: insert
+        setup-command: make
+        command: ./tester "insert()"
+        timeout: 5
+        max-score: 5
+    - name: contains
+      id: contains
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: contains
+        setup-command: make
+        command: ./tester "contains()"
+        timeout: 10
+        max-score: 5
+    - name: traversals
+      id: traversals
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: traversals
+        setup-command: make
+        command: "./tester traversals"
+        timeout: 10
+        max-score: 12
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        INSERT_RESULTS: "${{steps.insert.outputs.result}}"
+        CONTAINS_RESULTS: "${{steps.contains.outputs.result}}"
+        TRAVERSALS_RESULTS: "${{steps.traversals.outputs.result}}"
+      with:
+        runners: insert,contains,traversals
