@@ -1,4 +1,6 @@
 #define CATCH_CONFIG_MAIN
+#include <ostream>
+
 #include "BST.h"
 #include "catch.hpp"
 
@@ -110,7 +112,7 @@ TEST_CASE("constructors") {
 // }
 
 // TEST_CASE("traversals") {
-//     BST<double> bst;
+//     BST<int> bst;
 //     bst.insert(55);
 //     bst.insert(33);
 //     bst.insert(11);
@@ -120,16 +122,15 @@ TEST_CASE("constructors") {
 //     bst.insert(99);
 //     bst.insert(88);
 //     bst.insert(66);
-//     cout << "- Preorder: expecting: 55 33 11 22 44 77 66 99 88" << endl;
-//     cout << "- Got                :" << flush;
-//     bst.traversePreorder();
-//     cout << endl;
-//     cout << "\n- Postorder: expecting: 22 11 44 33 66 88 99 77 55" << endl;
-//     cout << "- Got                 :" << flush;
-//     bst.traversePostorder();
-//     cout << endl;
-//     cout << "\n- Inorder: expecting: 11 22 33 44 55 66 77 88 99" << endl;
-//     cout << "- Got               :" << flush;
-//     bst.traverseInorder();
-//     cout << endl;
+//     ostringstream strout;
+//     bst.traversePreorder(strout);
+//     REQUIRE(strout.str() == "55 33 11 22 44 77 66 99 88 ");
+//     strout.str("");
+
+//     bst.traversePostorder(strout);
+//     REQUIRE(strout.str() == "22 11 44 33 66 88 99 77 55 ");
+//     strout.str("");
+
+//     bst.traverseInorder(strout);
+//     REQUIRE(strout.str() == "11 22 33 44 55 66 77 88 99 ");
 // }

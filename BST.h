@@ -17,7 +17,7 @@ public:
     virtual ~BST();
     bool isEmpty() const;
     unsigned getNumItems() const;
-    void traversePreorder() const;
+    void traversePreorder(ostream& out) const;
 
     // This stuff below should be private: but because
     // we need to access it for testing, we leave it as public.
@@ -26,8 +26,8 @@ public:
         Node(const Item& it);
         virtual ~Node();
 
-        void traversePreorder() const;
-        virtual void processItem() const;
+        void traversePreorder(ostream& out) const;
+        virtual void processItem(ostream& out) const;
 
         Item myItem;
         Node* myLeft;
@@ -73,28 +73,28 @@ unsigned BST<Item>::getNumItems() const {
 }
 
 template <class Item>
-void BST<Item>::Node::processItem() const {
-    cout << ' ' << myItem;
+void BST<Item>::Node::processItem(ostream& out) const {
+    out << ' ' << myItem;
 }
 
 template <class Item>
-void BST<Item>::traversePreorder() const {
+void BST<Item>::traversePreorder(ostream& out) const {
     if (!isEmpty()) {
-        myRoot->traversePreorder();
+        myRoot->traversePreorder(out);
     }
 }
 
 template <class Item>
-void BST<Item>::Node::traversePreorder() const {
+void BST<Item>::Node::traversePreorder(ostream& out) const {
     // 1. process myItem first (preorder)
-    processItem();
+    processItem(out);
     // 2. then recursively process the items in the left subtree
     if (myLeft != nullptr) {
-        myLeft->traversePreorder();
+        myLeft->traversePreorder(out);
     }
     // 3. then recursively process the items in the right subtree
     if (myRight != nullptr) {
-        myRight->traversePreorder();
+        myRight->traversePreorder(out);
     }
 }
 
